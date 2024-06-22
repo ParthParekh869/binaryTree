@@ -17,11 +17,11 @@ public class binarySearchTree {
         return found;
     }
     public int findMin(){
+        int temp=Integer.MIN_VALUE;
         if(root == null) {
-            return Integer.MAX_VALUE;
+            return temp;
         }
         Node cur=root;
-        int temp=Integer.MAX_VALUE;
         while(cur.getLeftChild()!=null){
             temp=cur.getData();
             cur=cur.getLeftChild();
@@ -29,11 +29,41 @@ public class binarySearchTree {
         return temp;
     }
     public void addNode(int data) {
-        Node cur = root;
-
-        while (cur != null) {
+        // if root is null then initialise the root with the new node
+        if (root==null){
+            root = new Node(data);
+        }
+        // bst has at least one node
+        else{
+            Node prev=root;
+            Node cur = root;
+            boolean spotFound=false;
+            boolean insertToLeft=true;
+            while (!spotFound) {
+                // if there is no left child node then add node as a left child node
+                if (cur.getData() > data){
+                    prev=cur;
+                    cur=cur.getLeftChild();
+                }
+                else {
+                    prev=cur;
+                    cur=cur.getRightChild();
+                    insertToLeft=false;
+                }
+                if (cur==null){
+                    spotFound=true;
+                }
+            }
+            Node newNode = new Node(data);
+            if(insertToLeft){
+                prev.setLeftChild(newNode);
+            }
+            else {
+                prev.setRightChild(newNode);
+            }
 
         }
+
 
     }
 }

@@ -17,6 +17,9 @@ public class Node {
     public void leftChild(Node leftChild){
         this.leftChild=leftChild;
     }
+    public void setLeftChild(Node leftChild){
+        this.leftChild=leftChild;
+    }
     public Node getRightChild(){
         return rightChild;
     }
